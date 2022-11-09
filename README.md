@@ -10,8 +10,10 @@ generate c++ demo according config:
 ```
 generate  data flow diagram png according config:
 	you need to install tools graphviz:
-		sudo apt-get install graphviz
-	usage: python tool/test.py [config_file]
+```shell
+    sudo apt-get install graphviz
+```
+    usage: python tool/test.py [config_file]
 	eg:
 ```shell
     python tool/test.py task.txt
