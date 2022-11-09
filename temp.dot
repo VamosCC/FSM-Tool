@@ -1,0 +1,22 @@
+digraph G {
+   rankdir=LR;
+IdleTask	->	AnalyseTask[label = TaskIsNew];
+AnalyseTask	->	ExecuteTask[label = TaskExecutable];
+AnalyseTask	->	EndTask[label = TaskUnexecutable];
+AnalyseTask	->	EndTask[label = TaskOver];
+AnalyseTask	->	EndTask[label = TaskAborted];
+ExecuteTask	->	AnalyseTask[label = TaskExecuteOver];
+ExecuteTask	->	EndTask[label = TaskAborted];
+ExecuteTask	->	SuspendTask[label = TaskSuspended];
+ExecuteTask	->	ExceptionalTask[label = SyetemException];
+ExecuteTask	->	EmergencyBtnHandle[label = BtnEmergencyPressed];
+SuspendTask	->	EndTask[label = TaskAborted];
+SuspendTask	->	AnalyseTask[label = TaskContinued];
+ExceptionalTask	->	EndTask[label = TaskAborted];
+ExceptionalTask	->	AnalyseTask[label = SyetemNormal];
+EmergencyBtnHandle	->	EndTask[label = TaskAborted];
+EmergencyBtnHandle	->	AnalyseTask[label = BtnEmergencyUnpressed];
+EndTask	->	AnalyseTask[label = TaskIsNew];
+EndTask	->	IdleTask[label = EndTaskHandleOver];
+
+}
