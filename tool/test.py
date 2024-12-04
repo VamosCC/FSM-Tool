@@ -3,16 +3,16 @@ from sys import argv
 try:
     script,first = argv
 except :
-    print "usage: python generate_png.py [config_file]"
+    print("usage: python generate_png.py [config_file]")
     os._exit(0)
 
-print "reading file" ,first
+print ("reading file") ,first
 try:
 	f = open(first,"r")
 	lines = f.readlines()
-	f.close();
+	f.close()
 except :
-    print "reading file ", first , " failed"
+    print ("reading file "), first , " failed"
     os._exit(0)
 
 # print lines
@@ -28,9 +28,9 @@ for line in lines:
 	if lineArr[1] == 'Reset':
 		continue
 	if lineArr[1] == 'BehaviorReset':
-                continue
+		continue
 	str = lineArr[0] + "\t->\t"+ lineArr[2] + "[label = " + lineArr[1]+"];\n"
-	out_lines.append(str);
+	out_lines.append(str)
 	
 
 header="""digraph G {
@@ -38,10 +38,10 @@ header="""digraph G {
 """
 end="\n}"
 file_object = open('temp.dot', 'w')
-file_object.writelines(header);
-file_object.writelines(out_lines);
-file_object.write(end);
-file_object.close();
+file_object.writelines(header)
+file_object.writelines(out_lines)
+file_object.write(end)
+file_object.close()
 os.system("dot -Tpng temp.dot -o test.png")
 
 	
